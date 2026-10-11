@@ -79,13 +79,8 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
 
 /* ---------- details ---------- */
 .details { background: #fbeef2; padding: 88px clamp(20px, 6cqi, 96px) 80px; display: flex; flex-direction: column; align-items: center; }
-.details-grid { width: 100%; max-width: 1000px; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); gap: 20px; }
-.countdown { background: var(--plum); color: var(--ivory); border-radius: 20px; padding: 32px 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; position: relative; overflow: hidden; }
-.countdown::before { content: ""; position: absolute; inset: 10px; border: 1px solid rgba(230,200,143,.45); border-radius: 13px; pointer-events: none; }
-.cd-num { font: 400 6.5rem/0.9 var(--f-serif); background: linear-gradient(160deg, #f1d9a8, #d1ad6f 55%, #b8915a); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: #e6c88f; font-variant-numeric: tabular-nums; }
-.cd-label { font: 400 2rem/1.1 var(--f-script); }
-.cd-sub { font: 600 0.72rem/1.4 var(--f-sans); letter-spacing: 0.18em; text-transform: uppercase; color: #e6c88f; margin-top: 6px; }
-.fact-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.details-grid { width: 100%; max-width: 1100px; }
+.fact-cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
 .fact { background: var(--paper); border-radius: 16px; padding: 20px 20px 18px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .fact svg, .text-link svg, .node svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .fact svg { color: var(--gold); margin-bottom: 10px; }
@@ -202,6 +197,8 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
 
 
 
+@media (max-width: 1000px) { .fact-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 /* ---------- phones (one breakpoint, shared with the <picture> sources) ---------- */
 @media (max-width: 760px) {
   .hero { min-height: 0; aspect-ratio: auto; display: block; }
@@ -215,7 +212,6 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
   .letter { padding: 56px 22px 40px; }
   .deco { width: 170px; right: 12px; bottom: 16px; }
   .details { padding: 64px 16px 56px; }
-  .details-grid { grid-template-columns: 1fr; }
   .fact-cards { grid-template-columns: 1fr; gap: 10px; }
   .fact { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 12px; padding: 16px; }
   .fact svg { grid-row: span 3; margin: 2px 0 0; }
@@ -296,11 +292,6 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
       <h2 id="details-title" class="sec-title">The party details</h2>
     </div>
     <div class="details-grid">
-      <div class="countdown">
-        <span class="cd-num" data-cd-num>6</span>
-        <span class="cd-label" data-cd-label>sleeps until the party</span>
-        <span class="cd-sub">Saturday at 15:30</span>
-      </div>
       <ul class="fact-cards">
         <li class="fact">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
@@ -374,8 +365,8 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
 
   <section class="where" id="where" aria-labelledby="where-title">
     <div class="sec-head">
-      <p class="eyebrow">Location</p>
-      <h2 id="where-title" class="sec-title">How to find us</h2>
+      <p class="eyebrow">Locations</p>
+      <h2 id="where-title" class="sec-title">How to find the locations</h2>
     </div>
     <div class="where-grid">
       <figure class="map-card">
@@ -557,24 +548,6 @@ h1 { margin: 0; font-weight: 400; display: flex; flex-direction: column; gap: 4p
 (function () {
   var announcer = document.getElementById('announce');
   function announce(msg) { announcer.textContent = ''; setTimeout(function () { announcer.textContent = msg; }, 50); }
-
-  // Countdown in "sleeps", counted on Bratislava's calendar so guests abroad see the same number
-  var partyDay = Date.UTC(2026, 9, 17);
-  var todayUTC;
-  try {
-    var parts = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Bratislava', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date()).split('-');
-    todayUTC = Date.UTC(+parts[0], +parts[1] - 1, +parts[2]);
-  } catch (e) {
-    var now = new Date();
-    todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  }
-  var days = Math.round((partyDay - todayUTC) / 86400000);
-  var num = document.querySelector('[data-cd-num]');
-  var lab = document.querySelector('[data-cd-label]');
-  if (days > 1) { num.textContent = days; lab.textContent = 'sleeps until the party'; }
-  else if (days === 1) { num.textContent = '1'; lab.textContent = 'more sleep!'; }
-  else if (days === 0) { num.textContent = '♥'; lab.textContent = "It's party day!"; }
-  else { num.textContent = '♥'; lab.textContent = 'Thank you for coming!'; }
 
   // Copy text to the clipboard; if the browser refuses, select it so the guest can copy by hand
   function copyText(text, selectEl, setLabel, resetLabel, what) {
