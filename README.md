@@ -14,7 +14,7 @@ Guests open the link from a WhatsApp message, so the page is designed for phones
 | **What we'll do** | The 2.5-hour party plan: welcome, pamper time, glow-up, neon fashion show, disco, birthday wishes, pick-up |
 | **How to find us** | A simple illustrated map, the address with a copy button, free parking in front of the building, and links to Google Maps, Apple Maps and Waze |
 | **While the girls are at the spa** | For moms: coffee at the Cinnabon café in Nivy shopping center during the party, with a link to the menu |
-| **Will you come?** | How to reply by 12 October: a WhatsApp message or a text |
+| **Will you come?** | How to reply by 14 October: a WhatsApp message or a text |
 | **Footer** | A thank-you from Emili |
 
 ## How it's built
