@@ -10,9 +10,9 @@ Guests open the link from a WhatsApp message, so the page is designed for phones
 |---|---|
 | **Hero** | "Emili is turning 7", the date, time and place, and a button to the party details |
 | **A letter from Emili** | A short invitation in Emili's own words, written to be read aloud to a 7-year-old |
-| **The party details** | A countdown in "sleeps", date, time (15:30 – 18:00), place, what to wear, and an Add to Google Calendar link |
+| **The party details** | Date, time (15:30 – 18:00), place, what to wear, and an Add to Google Calendar link |
 | **What we'll do** | The 2.5-hour party plan: welcome, pamper time, glow-up, neon fashion show, disco, birthday wishes, pick-up |
-| **How to find us** | A simple illustrated map, the address with a copy button, free parking in front of the building, and links to Google Maps, Apple Maps and Waze |
+| **How to find the locations** | A simple illustrated map, the address with a copy button, free parking in front of the building, and links to Google Maps, Apple Maps and Waze |
 | **While the girls are at the spa** | For moms: coffee at the Cinnabon café in Nivy shopping center during the party, with a link to the menu |
 | **Will you come?** | How to reply by 14 October: a WhatsApp message or a text |
 | **Footer** | A thank-you from Emili |
@@ -22,7 +22,6 @@ Guests open the link from a WhatsApp message, so the page is designed for phones
 - One static HTML file (`index.html`) with inline CSS and a little plain JavaScript. There's no build step and there are no dependencies.
 - Fonts come from Google Fonts: Pinyon Script, Young Serif and Nunito Sans.
 - Phones get their own layout below 760 px wide. `<picture>` elements make sure each device downloads only the image it shows.
-- The countdown is calculated in Bratislava time, so guests in other time zones see the same number.
 - Copy buttons announce their result to screen readers, and animation respects reduced-motion settings.
 
 ## Files
